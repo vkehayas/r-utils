@@ -4,23 +4,23 @@ LoadPackages = function(packageName, gitUser = NULL) {
   #' load it. A utility function `install_github` from package `ghit` will be 
   #' installed if not found from that or another package.
   
-
-    if (!require(packageName, character.only = TRUE)) {
-      # Attempts to load package. If it does not exist, the above returns TRUE
+  
+  if (!require(packageName, character.only = TRUE)) {
+    # Attempts to load package. If it does not exist, the above returns TRUE
+    
+    if (!is.null(gitUser)) {
       
-      if (!is.null(gitUser)) {
-        
-        if (!exists("install_github")) {
-          LoadPackages("ghit")
-        }
-        install_github(paste(gitUser, packageName, sep = "/"))
-        
-      } else {
-        install.packages(packageName, dependencies = TRUE)
+      if (!exists("install_github")) {
+        LoadPackages("ghit")
       }
+      install_github(paste(gitUser, packageName, sep = "/"))
       
-      library(packageName, character.only = TRUE)
+    } else {
+      install.packages(packageName, dependencies = TRUE)
     }
     
+    library(packageName, character.only = TRUE)
+  }
+  
   
 }
