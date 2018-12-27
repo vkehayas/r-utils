@@ -46,7 +46,7 @@ DiagnoseBRMSModel = function(mdl,
 
   CheckTreeDepth = function(mdl, mdlName, verbose) {
 
-    if (brms::is.brmsfitis.brmsfit(mdl)) {
+    if (brms::is.brmsfit(mdl)) {
 
       treeDepthVector = rstan::get_max_treedepth_iterations(mdl$fit)
       n = length(treeDepthVector)
