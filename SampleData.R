@@ -1,6 +1,17 @@
 SampleData = function(dt, nDiv) {
   
-  smallT = dt[sample(1:nrow(dt), round(nrow(dt)/nDiv))]
+  if (nDiv <= 1) {
+    
+    smallT = dt
+    
+  } else {
+    
+    nRow = nrow(dt)
+    
+    smallT = dt[sample(1:nRow, 
+                       nRow/nDiv), ]
+    
+  }
   
   return(smallT)
   
