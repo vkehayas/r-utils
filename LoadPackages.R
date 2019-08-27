@@ -17,7 +17,7 @@ LoadPackages = function(packageNameList, gitUser = NULL) {
         install_github(paste(gitUser, iPackages, sep = "/"))
 
       } else {
-        install.packages(iPackages, dependencies = TRUE)
+        install.packages(iPackages, dependencies = c("Depends", "Imports"))
       }
 
       library(iPackages, character.only = TRUE)
